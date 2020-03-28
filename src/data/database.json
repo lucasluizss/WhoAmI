@@ -1,0 +1,19 @@
+{
+	"categories": [
+		{ 
+			"id": 1,
+			"title": "Animais",
+			"data": ["leão", "onça", "macaco", "tucano", "baleia", "veado", "abelha", "burro", "cavalo"]
+		},
+		{ 
+			"id": 2,
+			"title": "Estados Brasileiros",
+			"data": ["são paulo", "paraná", "bahia", "minas gerais", "brasília", "espírito santo", "acre", "pará", "amapá", "rondônia", "mato grosso do sul", "manaus"]
+		},
+		{ 
+			"id": 3, 
+			"title": "Profissões",
+			"data": ["músico", "cantor", "contador", "programador", "mercadólogo", "piloto de avião", "engenheiro", "vendedor", "pedreiro", "arquiteto"]
+		}
+	]
+}
