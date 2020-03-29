@@ -15,7 +15,15 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.categories = database.categories;
 
-    localStorage.setItem('categories', JSON.stringify(this.categories));
+    this.loadConfiguration();
+  }
+
+  private loadConfiguration(): void {
+    if (!localStorage.getItem('settings')) {
+      localStorage.setItem('settings', JSON.stringify(database.configuration));
+    }
+
+    localStorage.setItem('categories', JSON.stringify(database.categories));
   }
 
   goUrl(url: string, id: number): void {

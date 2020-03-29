@@ -4,6 +4,7 @@
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
+  "orientation": "landscape",
   "scope": "./",
   "start_url": "./",
   "icons": [
@@ -54,6 +55,24 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
+    },
+    {
+      "src": "assets/images/1.jpg",
+      "sizes": "512x512",
+      "type": "image/jpg",
+      "purpose": "categories"
+    },
+    {
+      "src": "assets/images/2.jpg",
+      "sizes": "512x512",
+      "type": "image/jpg",
+      "purpose": "categories"
+    },
+    {
+      "src": "assets/images/3.jpg",
+      "sizes": "512x512",
+      "type": "image/jpg",
+      "purpose": "categories"
     }
   ]
 }

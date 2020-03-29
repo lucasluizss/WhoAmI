@@ -3,7 +3,7 @@
 		{ 
 			"id": 1,
 			"title": "Animais",
-			"data": ["leão", "onça", "macaco", "tucano", "baleia", "veado", "abelha", "burro", "cavalo"]
+			"data": ["leão", "onça", "macaco", "tucano", "baleia", "veado", "abelha", "burro", "cavalo", "borboleta", "aranha", "zebra", "canguru", "coala"]
 		},
 		{ 
 			"id": 2,
@@ -13,7 +13,11 @@
 		{ 
 			"id": 3, 
 			"title": "Profissões",
-			"data": ["músico", "cantor", "contador", "programador", "mercadólogo", "piloto de avião", "engenheiro", "vendedor", "pedreiro", "arquiteto"]
+			"data": ["músico", "cantor", "contador", "programador", "mercadólogo", "piloto de avião", "engenheiro", "vendedor", "pedreiro", "arquiteto", "advogado"]
 		}
-	]
+	],
+	"configuration": {
+		"playwithtime": true,
+		"time": 2000
+	}
 }

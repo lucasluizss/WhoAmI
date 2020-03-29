@@ -2,28 +2,20 @@
 	
 	<h4>Settings <span class="icon" uk-icon="icon: settings"></span></h4>
 
-	<form>
+	<form [formGroup]="settingsForm" (change)="onChangeForm()">
 		<fieldset class="uk-fieldset">
 
 			<div class="uk-margin">
-				<select class="uk-select">
-					<option>Option 01</option>
-					<option>Option 02</option>
+				<label for="tempo">Palavras por tempo:</label>
+				<select formControlName="playwithtime" class="uk-select">
+					<option value="true">Sim</option>
+					<option value="false">Não</option>
 				</select>
 			</div>
 
-			<div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
-				<label><input class="uk-radio" type="radio" name="radio2" checked> A</label>
-				<label><input class="uk-radio" type="radio" name="radio2"> B</label>
-			</div>
-
-			<div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
-				<label><input class="uk-checkbox" type="checkbox" checked> A</label>
-				<label><input class="uk-checkbox" type="checkbox"> B</label>
-			</div>
-
 			<div class="uk-margin">
-				<input class="uk-range" type="range" value="2" min="0" max="10" step="0.1">
+				Tempo: <span class="uk-badge">{{ secounds }} segundo(s)</span>
+				<input formControlName="time" class="uk-range" type="range" value="{{ settings.time }}" min="1000" max="10000" step="0.1">
 			</div>
 
 		</fieldset>
