@@ -9,18 +9,14 @@ declare var UIkit: any;
 export class GameComponent implements OnInit {
 
   private settings: any;
-
   public score = 0;
   public item = '';
-
   public maxProgress = 0;
   public currentProgress = 0;
-
   public categoryItem: any;
-
   public again: boolean;
-
-  public player = 'Anonymous';
+  public player: string;
+  private items: Array<string>;
 
   constructor(private activatedRoute: ActivatedRoute) { }
 
@@ -38,7 +34,7 @@ export class GameComponent implements OnInit {
 
   private whoIsPlaying(): void {
     UIkit.modal.prompt('Name:', '').then((name) => {
-      this.player = name;
+      this.player = name || 'Anonymous';
       this.notificate(`Lets play ${name}`);
 
       this.play(this.categoryItem);
@@ -46,17 +42,22 @@ export class GameComponent implements OnInit {
   }
 
   public play(categoryItem): void {
-    const items = categoryItem.data || [];
+    this.items = categoryItem.data || [];
 
-    this.maxProgress = items.length;
+    this.maxProgress = this.items.length;
 
     this.again = false;
 
     if (this.settings.playwithtime) {
-      this.showItemsWithTime(items);
+      this.showItemsWithTime(this.items);
     } else {
-      this.notificate('Not Implemented', 10000);
+      this.showItems();
     }
+  }
+
+  private showItems(): void {
+    this.item = this.getItem(this.items);
+    this.items = this.items.filter(i => i !== this.item);
   }
 
   private showItemsWithTime(items: Array<string>): void {
@@ -79,10 +80,13 @@ export class GameComponent implements OnInit {
   }
 
   public rightAnswer(): void {
+    this.notificate('Acertou!');
     this.score++;
   }
 
   public incorrectAnswer(): void {
+    this.notificate('Errou!');
+
     if (this.score > 0) {
       this.score--;
     }
@@ -92,20 +96,21 @@ export class GameComponent implements OnInit {
     UIkit.modal.prompt('Score:', '').then(score => {
       this.score = +score;
 
-      const result = { name: this.player, score: this.score };
-
-      const ranking = JSON.parse(localStorage.getItem('ranking')) || [];
-
-      const index = ranking.findIndex(r => r.name === result.name);
-
-      if (index > -1) {
-        ranking[index] = result;
-      } else {
-        ranking.push(result);
-      }
-
-      localStorage.setItem('ranking', JSON.stringify(ranking));
+      this.saveScoreResult();
     });
+  }
+
+  private saveScoreResult() {
+    const result = { name: this.player, score: this.score };
+    const ranking = JSON.parse(localStorage.getItem('ranking')) || [];
+    const index = ranking.findIndex(r => r.name === result.name);
+
+    if (index > -1) {
+      ranking[index] = result;
+    } else {
+      ranking.push(result);
+    }
+    localStorage.setItem('ranking', JSON.stringify(ranking));
   }
 
   private checkSettings(): void {
@@ -119,5 +124,25 @@ export class GameComponent implements OnInit {
       pos: 'bottom-center',
       timeout
     });
+  }
+
+  public onClick(e): void {
+    const clickTarget = e.target;
+    const clickTargetWidth = clickTarget.offsetWidth;
+    const xCoordInClickTarget = e.clientX - clickTarget.getBoundingClientRect().left;
+
+    if (clickTargetWidth / 2 > xCoordInClickTarget) {
+      this.incorrectAnswer();
+    } else {
+      this.rightAnswer();
+    }
+
+    if (this.items.length > 0) {
+      this.showItems();
+    } else {
+      this.again = true;
+      this.item = 'FIM!';
+      this.saveScoreResult();
+    }
   }
 }

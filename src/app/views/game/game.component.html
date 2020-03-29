@@ -1,10 +1,12 @@
-<div class="uk-position-center">
-	<div class="js-wrapper">
-		<h1> {{ item }} </h1>
-		<progress class="uk-progress" value="{{ currentProgress }}" max="{{ maxProgress }}"></progress>
-	
-		<button class="uk-button uk-button-primary uk-button-large" *ngIf="again" (click)="play(categoryItem)">
-			JOGAR NOVAMENTE
-		</button>
+<div (click)="onClick($event)" class="uk-container">
+	<div class="uk-position-center">
+		<div class="js-wrapper">
+			<h1> {{ item }} </h1>
+			<progress class="uk-progress" value="{{ currentProgress }}" max="{{ maxProgress }}"></progress>
+
+			<button class="uk-button uk-button-primary uk-button-large" *ngIf="again" (click)="play(categoryItem)">
+				JOGAR NOVAMENTE
+			</button>
+		</div>
 	</div>
 </div>
