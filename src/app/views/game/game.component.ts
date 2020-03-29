@@ -116,7 +116,7 @@ export class GameComponent implements OnInit {
     UIkit.notification({
       message,
       status: 'primary',
-      pos: 'top-right',
+      pos: 'bottom-center',
       timeout
     });
   }

@@ -18,6 +18,7 @@
 	],
 	"configuration": {
 		"playwithtime": true,
-		"time": 2000
+		"numberofwords": 5,
+		"time": 5000
 	}
 }

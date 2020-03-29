@@ -5,23 +5,23 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     component: LayoutComponent,
     children: [
       {
-        path: "home",
+        path: 'home',
         loadChildren: () => import('./views/home/home.module').then((x) => x.AppHomeModule)
       },
       {
-        path: "ranking",
+        path: 'ranking',
         loadChildren: () => import('./views/ranking/ranking.module').then((x) => x.AppRankingModule)
       },
       {
-        path: "play",
+        path: 'play',
         loadChildren: () => import('./views/game/game.module').then((x) => x.AppGameModule)
       },
       {
-        path: "settings",
+        path: 'settings',
         loadChildren: () => import('./views/settings/settings.module').then((x) => x.AppSettingsModule)
       }
     ]
