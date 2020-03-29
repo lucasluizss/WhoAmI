@@ -5,8 +5,8 @@
   "background_color": "#fafafa",
   "display": "standalone",
   "orientation": "landscape",
-  "scope": "./WhoAmI/",
-  "start_url": "./WhoAmI/",
+  "scope": "./",
+  "start_url": "./",
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",
