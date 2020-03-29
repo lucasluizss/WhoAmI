@@ -3,11 +3,17 @@
 	<ul class="uk-slideshow-items">
 
 		<li *ngFor="let item of categories">
-			<img src="https://getuikit.com/docs/images/photo.jpg" alt="" uk-cover>
+			<img src="../../../assets/images/{{ item.id }}.jpg" alt="" uk-cover>
 			<div class="uk-position-center uk-position-small uk-text-center">
-				<h2 uk-slideshow-parallax="x: 100,-100">{{ item.title }}</h2>
+				<div uk-slideshow-parallax="x: 100,-100">
+					<div class="uk-tile uk-tile-secondary">
+            <p class="uk-h4">{{ item.title }}</p>
+        	</div>
+				</div>
 				<div uk-slideshow-parallax="x: 200,-200">
-					<button class="uk-button uk-button-default uk-button-large">JOGAR</button>
+					<button (click)="goUrl('/play', item.id)" class="uk-button uk-button-secondary uk-button-large">
+						JOGAR
+					</button>
 				</div>
 			</div>
 		</li>
