@@ -1,5 +1,7 @@
 # WhoAmI
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9d3417ac1bb044699e4040299a080bfa)](https://app.codacy.com/manual/lucasluizss/WhoAmI?utm_source=github.com&utm_medium=referral&utm_content=lucasluizss/WhoAmI&utm_campaign=Badge_Grade_Dashboard)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.25.
 
 ## Development server
