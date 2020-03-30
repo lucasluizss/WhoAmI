@@ -57,19 +57,25 @@
       "purpose": "maskable"
     },
     {
-      "src": "assets/images/1.png",
+      "src": "assets/images/others/cover.jpg",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "cover"
+    },
+    {
+      "src": "assets/images/categories/1.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "categories"
     },
     {
-      "src": "assets/images/2.png",
+      "src": "assets/images/categories/2.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "categories"
     },
     {
-      "src": "assets/images/3.png",
+      "src": "assets/images/categories/3.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "categories"
