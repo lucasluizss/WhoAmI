@@ -8,17 +8,23 @@
 		{ 
 			"id": 2,
 			"title": "Estados Brasileiros",
-			"data": ["são paulo", "paraná", "bahia", "minas gerais", "brasília", "espírito santo", "acre", "pará", "amapá", "rondônia", "mato grosso do sul", "manaus"]
+			"data": ["Acre", "Alagoas", "Amapá", "Amazonas", "Bahia", "Ceará", "Distrito Federal", "Espírito Santo", "Goiás", "Maranhão", "Mato Grosso", "Mato Grosso do Sul", "Minas Gerais", "Paraná", "Paraíba", "Pará", "Pernambuco", "Piauí", "Rio Grande do Norte", "Rio Grande do Sul", "Rio de Janeiro", "Rondônia", "Roraima", "Santa Catarina", "Sergipe", "São Paulo", "Tocantins"]
 		},
 		{ 
 			"id": 3, 
 			"title": "Profissões",
-			"data": ["músico", "cantor", "contador", "programador", "mercadólogo", "piloto de avião", "engenheiro", "vendedor", "pedreiro", "arquiteto", "advogado"]
+			"data": ["Administrador", "Advogado", "Agricultor", "Arqueólogo", "Arquiteto", "Artesão", "Astrônomo", "Babá", "Biólogo", "Cantor", "Cientista", "Confeiteiro", "Contador", "Cozinheiro", "Dançarino", "Dentista", "Design", "Diretor de Cinema", "Doméstica", "Eletricista", "Encanador", "Enfermeiro", "Engenheiro", "Farmacêutico", "Fotógrafo", "Físico", "Garçon", "Geógrafo", "Joalheiro", "Jornalista", "Juíz", "Lutador", "Marceneiro", "Marinheiro", "Matemático", "Mecânico", "Mercadólogo", "Motorista", "Médico", "Músico", "Nutricionista", "Padeiro", "Pedreiro", "Piloto de avião", "Policial", "Professor", "Programador", "Psicólogo", "Químico", "Recepcionista", "Relojoeiro", "Secretárop", "Segurança", "Soldador", "Taxista", "Teólogo", "Vendedor", "Zelador"]
+		},
+		{
+			"id": 4,
+			"title": "Para Crianças",
+			"data": ["onda", "peter pan", "óculos", "rei leão", "cinderela", "bicicleta", "casa", "computador", "europa", "maça", "livro", "basquete", "tarzan", "balão", "torta", "fogo", "cenoura", "camisa", "sino", "aranha", "relógio", "chuva", "braço", "colher", "preto", "meias", "chutar", "shrek", "gato", "comer", "ponte", "piscina", "ponto", "dormir", "gato"]
 		}
 	],
 	"configuration": {
-		"playwithtime": true,
-		"numberofwords": 5,
-		"time": 5000
+		"playWithTime": true,
+		"numberOfWords": 10,
+		"timePerWord": 5000,
+		"playingTime": 30000
 	}
 }

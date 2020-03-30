@@ -17,10 +17,19 @@ export class GameComponent implements OnInit {
   public again: boolean;
   public player: string;
   private items: Array<string>;
+  private counter = 0;
 
   constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    (window as any).addEventListener('devicemotion', this.handleMotionEvent, true);
+
+    if ((window as any).DeviceOrientationEvent) {
+      window.addEventListener('deviceorientation', this.handleOrientation);
+    } else {
+      this.notificate('DeviceOrientationEvent is not supported');
+    }
+
     this.checkSettings();
 
     this.activatedRoute.queryParams.subscribe(params => {
@@ -44,11 +53,11 @@ export class GameComponent implements OnInit {
   public play(categoryItem): void {
     this.items = categoryItem.data || [];
 
-    this.maxProgress = this.items.length;
+    this.maxProgress = this.counter = this.settings.numberOfWords;
 
     this.again = false;
 
-    if (this.settings.playwithtime) {
+    if (this.settings.playWithTime) {
       this.showItemsWithTime(this.items);
     } else {
       this.showItems();
@@ -57,11 +66,14 @@ export class GameComponent implements OnInit {
 
   private showItems(): void {
     this.item = this.getItem(this.items);
+
+    this.currentProgress++;
+
     this.items = this.items.filter(i => i !== this.item);
   }
 
   private showItemsWithTime(items: Array<string>): void {
-    if (!items.length) {
+    if (!items.length || !this.counter) {
       this.again = true;
       this.item = 'TEMPO ESGOTADO!';
       this.computeResult();
@@ -70,7 +82,10 @@ export class GameComponent implements OnInit {
 
     setTimeout(() => {
       this.item = this.getItem(items);
+
       this.currentProgress++;
+      this.counter--;
+
       this.showItemsWithTime(items.filter(i => i !== this.item));
     }, +this.settings.time || 2000);
   }
@@ -80,12 +95,12 @@ export class GameComponent implements OnInit {
   }
 
   public rightAnswer(): void {
-    this.notificate('Acertou!');
+    this.notificate('Acertou!', 1);
     this.score++;
   }
 
   public incorrectAnswer(): void {
-    this.notificate('Errou!');
+    this.notificate('Errou!', 1);
 
     if (this.score > 0) {
       this.score--;
@@ -110,6 +125,7 @@ export class GameComponent implements OnInit {
     } else {
       ranking.push(result);
     }
+
     localStorage.setItem('ranking', JSON.stringify(ranking));
   }
 
@@ -117,13 +133,37 @@ export class GameComponent implements OnInit {
     this.settings = JSON.parse(localStorage.getItem('settings'));
   }
 
-  private notificate(message, timeout = 3000): void {
+  private notificate(message, timeout = 3): void {
     UIkit.notification({
       message,
       status: 'primary',
       pos: 'bottom-center',
-      timeout
+      timeout: timeout * 1000
     });
+  }
+
+  public handleOrientation(event): void {
+    let absolute = event.absolute;
+    let alpha = event.alpha;
+    let beta = event.beta;
+    let gamma = event.gamma;
+
+    this.notificate(`Absolute: ${absolute}`, 10);
+    this.notificate(`Alpha: ${alpha}`, 10);
+    this.notificate(`Beta: ${beta}`, 10);
+    this.notificate(`Gamma: ${gamma}`, 10);
+    // Do stuff with the new orientation data
+  }
+
+  handleMotionEvent(event) {
+
+    let x = event.accelerationIncludingGravity.x;
+    let y = event.accelerationIncludingGravity.y;
+    let z = event.accelerationIncludingGravity.z;
+    this.notificate(`${x}`);
+    this.notificate(`${y}`);
+    this.notificate(`${z}`);
+    // Do something awesome.
   }
 
   public onClick(e): void {
@@ -131,18 +171,20 @@ export class GameComponent implements OnInit {
     const clickTargetWidth = clickTarget.offsetWidth;
     const xCoordInClickTarget = e.clientX - clickTarget.getBoundingClientRect().left;
 
-    if (clickTargetWidth / 2 > xCoordInClickTarget) {
-      this.incorrectAnswer();
-    } else {
-      this.rightAnswer();
-    }
-
-    if (this.items.length > 0) {
+    if (this.counter > 0) {
       this.showItems();
+      this.counter--;
     } else {
       this.again = true;
       this.item = 'FIM!';
       this.saveScoreResult();
+      return;
+    }
+
+    if (clickTargetWidth / 2 > xCoordInClickTarget) {
+      this.incorrectAnswer();
+    } else {
+      this.rightAnswer();
     }
   }
 }

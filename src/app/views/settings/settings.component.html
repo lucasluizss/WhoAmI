@@ -8,38 +8,53 @@
 			<div class="uk-margin">
 				<div class="uk-form-label">Palavras por tempo:</div>
 				<div class="uk-form-controls uk-margin uk-grid-small uk-child-width-auto uk-grid">
-					<label><input formControlName="playwithtime" class="uk-radio" type="radio" [value]="true"> Sim</label>
-					<label><input formControlName="playwithtime" class="uk-radio" type="radio" [value]="false"> Nao</label>
+					<label><input formControlName="playWithTime" class="uk-radio" type="radio" [value]="true"> Sim</label>
+					<label><input formControlName="playWithTime" class="uk-radio" type="radio" [value]="false"> Nao</label>
 				</div>
 			</div>
 
-			<div *ngIf="settings.playwithtime">
-				<div class="uk-margin">
-					<div uk-form-custom="target: > * > span:last-child">
-						<select formControlName="numberofwords">
-							<option value="5">05 Palavras</option>
-							<option value="10">10 Palavras</option>
-							<option value="15">15 Palavras</option>
-							<option value="20">20 Palavras</option>
-						</select>
-						<span class="uk-link">
-							<span uk-icon="icon: file-text"></span>
-							<span></span>
-						</span>
-					</div>
+			<div class="uk-margin">
+				<div class="uk-form-label">Palavras por partida:</div>
+				<div uk-form-custom="target: > * > span:last-child">
+					<select formControlName="numberOfWords">
+						<option value="5">05 Palavras</option>
+						<option value="10">10 Palavras</option>
+						<option value="15">15 Palavras</option>
+						<option value="20">20 Palavras</option>
+						<option value="25">25 Palavras</option>
+					</select>
+					<span class="uk-link">
+						<span uk-icon="icon: file-text"></span>
+						<span></span>
+					</span>
 				</div>
+			</div>
+
+			<div *ngIf="settings.playWithTime">
 				<div class="uk-margin">
-					<div class="uk-form-label">Tempo: <span class="uk-badge">{{ secounds }} segundo(s)</span></div>
-					<input formControlName="time" class="uk-range" type="range" value="{{ settings.time }}" min="1000" max="10000"
-						step="0.1">
+					<div class="uk-form-label">Tempo por palavra: <span class="uk-badge">{{ secoundsPerWord }} segundo(s)</span>
+					</div>
+					<input formControlName="timePerWord" class="uk-range" type="range" value="{{ settings.timePerWord }}"
+						min="1000" max="10000" step="0.1">
+				</div>
+			</div>
+
+			<div *ngIf="!settings.playWithTime">
+				<div class="uk-margin">
+					<div class="uk-form-label">Tempo por partida: <span class="uk-badge">{{ secoundsOfGame }} segundo(s)</span>
+					</div>
+					<input formControlName="playingTime" class="uk-range" type="range" value="{{ settings.playingTime }}"
+						min="30000" max="90000" step="0.1">
 				</div>
 			</div>
 
 			<div class="uk-margin">
 				<button class="uk-button uk-button-default" (click)="resetRanking()"><span uk-icon="trash"></span> Reset
-					Ranking</button>
+					Ranking
+				</button>
 				<button class="uk-button uk-button-default" (click)="resetSettings()"><span uk-icon="trash"></span> Reset
-					Settings</button>
+					Settings
+				</button>
 			</div>
 
 		</fieldset>

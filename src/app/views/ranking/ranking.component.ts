@@ -11,7 +11,7 @@ export class RankingComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    const list = JSON.parse(localStorage.getItem('ranking'));
+    const list = JSON.parse(localStorage.getItem('ranking')) || [];
 
     list.sort((a, b) => (a.score < b.score) ? 1 : ((b.score < a.score) ? -1 : 0));
 

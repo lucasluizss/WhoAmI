@@ -12,9 +12,10 @@ export class SettingsComponent implements OnInit {
   public settings: any;
 
   public settingsForm = this.fb.group({
-    playwithtime: [''],
-    numberofwords: [5],
-    time: [2000]
+    playWithTime: [true],
+    numberOfWords: [5],
+    timePerWord: [2000],
+    playingTime: [30000]
   });
 
   constructor(public fb: FormBuilder) { }
@@ -27,22 +28,28 @@ export class SettingsComponent implements OnInit {
 
   private updateForm() {
     this.settingsForm.setValue({
-      playwithtime: this.settings.playwithtime,
-      numberofwords: this.settings.numberofwords,
-      time: this.settings.time
+      playWithTime: this.settings.playWithTime,
+      numberOfWords: this.settings.numberOfWords,
+      timePerWord: this.settings.timePerWord,
+      playingTime: this.settings.playingTime
     });
   }
 
-  public get secounds(): number {
-    return Math.round((this.settings.time / 1000) * 100) / 100;
+  public get secoundsPerWord(): number {
+    return Math.round((this.settings.timePerWord / 1000) * 100) / 100;
+  }
+
+  public get secoundsOfGame(): number {
+    return Math.round((this.settings.playingTime / 1000) * 100) / 100;
   }
 
   public onChangeForm(): void {
     const changes = this.settingsForm.value;
 
-    this.settings.time = +changes.time;
-    this.settings.playwithtime = changes.playwithtime;
-    this.settings.numberofwords = +changes.numberofwords;
+    this.settings.playingTime = +changes.playingTime;
+    this.settings.timePerWord = +changes.timePerWord;
+    this.settings.playWithTime = changes.playWithTime;
+    this.settings.numberOfWords = +changes.numberOfWords;
 
     localStorage.setItem('settings', JSON.stringify(this.settings));
   }
@@ -50,7 +57,7 @@ export class SettingsComponent implements OnInit {
   public resetSettings(): void {
     this.settings = database.configuration;
     this.updateForm();
-    this.notificate('As configurações foram redefinidas!');
+    this.notificate('As configuracoes foram redefinidas!');
   }
 
   public resetRanking(): void {
