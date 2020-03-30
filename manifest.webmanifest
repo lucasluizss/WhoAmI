@@ -57,21 +57,21 @@
       "purpose": "maskable"
     },
     {
-      "src": "assets/images/1.jpg",
+      "src": "assets/images/1.png",
       "sizes": "512x512",
-      "type": "image/jpg",
+      "type": "image/png",
       "purpose": "categories"
     },
     {
-      "src": "assets/images/2.jpg",
+      "src": "assets/images/2.png",
       "sizes": "512x512",
-      "type": "image/jpg",
+      "type": "image/png",
       "purpose": "categories"
     },
     {
-      "src": "assets/images/3.jpg",
+      "src": "assets/images/3.png",
       "sizes": "512x512",
-      "type": "image/jpg",
+      "type": "image/png",
       "purpose": "categories"
     }
   ]
