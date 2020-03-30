@@ -152,10 +152,9 @@ export class GameComponent implements OnInit {
     this.notificate(`Alpha: ${alpha}`, 10);
     this.notificate(`Beta: ${beta}`, 10);
     this.notificate(`Gamma: ${gamma}`, 10);
-    // Do stuff with the new orientation data
   }
 
-  handleMotionEvent(event) {
+  public handleMotionEvent(event): void {
 
     let x = event.accelerationIncludingGravity.x;
     let y = event.accelerationIncludingGravity.y;

@@ -1,9 +1,9 @@
-<div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow="animation: push">
+<div class="uk-position-relative uk-visible-toggle uk-light uk-animation-fade" tabindex="-1" uk-slideshow="autoplay-interval: 3000; animation: push">
 
 	<ul class="uk-slideshow-items">
 
 		<li *ngFor="let item of categories">
-			<img src="../../../assets/images/{{ item.id }}.png" alt="" uk-cover>
+			<img src="../../../assets/images/categories/{{ item.id }}.png" alt="" uk-cover>
 			<div class="uk-position-center uk-position-small uk-text-center">
 				<div uk-slideshow-parallax="x: 100,-100">
 					<div class="uk-tile uk-tile-secondary">
