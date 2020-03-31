@@ -57,7 +57,7 @@
       "purpose": "maskable"
     },
     {
-      "src": "assets/images/others/cover.jpg",
+      "src": "assets/images/others/cover.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "cover"
