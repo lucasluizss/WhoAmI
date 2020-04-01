@@ -4,7 +4,7 @@
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
-  "orientation": "landscape",
+  "orientation": "portrait",
   "scope": "./",
   "start_url": "./",
   "icons": [
@@ -76,6 +76,18 @@
     },
     {
       "src": "assets/images/categories/3.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "categories"
+    },
+    {
+      "src": "assets/images/categories/4.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "categories"
+    },
+    {
+      "src": "assets/images/categories/5.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "categories"
