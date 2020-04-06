@@ -6,7 +6,7 @@
   "display": "standalone",
   "orientation": "landscape",
   "scope": "./",
-  "start_url": "./",
+  "start_url": "./WhoAmI",
   "icons": [
     {
       "src": "assets/icons/apple-touch-icon-57x57.png",

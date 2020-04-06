@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1586140060195,
+  "timestamp": 1586140347079,
   "index": "/WhoAmI/index.html",
   "assetGroups": [
     {
@@ -111,7 +111,7 @@
     "/WhoAmI/index.html": "ab19b9f9a05817fa796e82b260f124df18cf965c",
     "/WhoAmI/main-es2015.c66fcb15e27e4bc37cef.js": "4e52d669e17267be878f1b456838842ee83d0457",
     "/WhoAmI/main-es5.c66fcb15e27e4bc37cef.js": "2568f89febc5289dd9c75d9ea065c3e66834dd84",
-    "/WhoAmI/manifest.webmanifest": "b5f913f367e7d1be63b2aa7173b6746ef4e02c7f",
+    "/WhoAmI/manifest.webmanifest": "ff49052db73e0b51a81bbe93bf4b2bc2bf4c52b5",
     "/WhoAmI/polyfills-es2015.e4fd839411335fa27ae8.js": "bfa15cec258471785b84afbc975b4572f44f71f3",
     "/WhoAmI/polyfills-es5.591a1cfb7966a8b23633.js": "17a67183cc4663dc1ef45c0699f5f6acecbf7168",
     "/WhoAmI/runtime-es2015.0c75e847bcf52dd1037a.js": "32eacfdb41ef4ce112e11e4d1d68ef2870acd6d9",
