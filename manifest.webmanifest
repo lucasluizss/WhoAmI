@@ -101,6 +101,21 @@
       "src": "assets/images/categories/8.jpg",
       "sizes": "512x512",
       "type": "image/png"
+    },
+    {
+      "src": "assets/audios/final_game_result.mp3",
+      "sizes": "512x512",
+      "type": "audio/mp3"
+    },
+    {
+      "src": "assets/audios/success_answer.mp3",
+      "sizes": "512x512",
+      "type": "audio/mp3"
+    },
+    {
+      "src": "assets/audios/wrong_answer.mp3",
+      "sizes": "512x512",
+      "type": "audio/mp3"
     }
   ]
 }
