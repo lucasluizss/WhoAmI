@@ -83,20 +83,20 @@ export class SettingsComponent implements OnInit {
 	private checkUpdates(): void {
 		if (this.swUpdate.isEnabled) {
 			this.swUpdate.available.subscribe((response) => {
-				console.log(response);
+				console.log('ATUALIZAÇÃO: ', response);
 				this.vertionAvailable = true;
 			});
 		}
 	}
 
 	public update(): void {
-		if (this.swUpdate.isEnabled && this.vertionAvailable) {
+		if (this.vertionAvailable) {
 			UIkit.modal.confirm('Nova versão disponível. Atualizar?').then(() => {
-				setTimeout(() => {
-					this.notificate('Seu app foi atualizado!');
-				}, 3000);
+				this.notificate('Seu app está sendo atualizado!');
 
-				window.location.reload();
+				setTimeout(() => {
+					window.location.reload();
+				}, 3000);
 			}, () => {
 				this.notificate('Atualização cancelada!');
 			});
