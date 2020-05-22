@@ -14,6 +14,7 @@ export class SettingsComponent implements OnInit {
 
 	public settings: Configuration;
 	public serviceWorkerAvailable: boolean;
+	private vertionAvailable: boolean;
 
 	public settingsForm = this.fb.group({
 		soundEnabled: [true],
@@ -29,6 +30,7 @@ export class SettingsComponent implements OnInit {
 	ngOnInit() {
 		this.settings = new Configuration();
 		this.serviceWorkerAvailable = this.swUpdate.isEnabled;
+		this.checkUpdates();
 		this.updateForm();
 	}
 
@@ -38,8 +40,8 @@ export class SettingsComponent implements OnInit {
 			gameMode: +this.settings.gameMode as Mode,
 			losePointsWhenWrong: this.settings.losePointsWhenWrong,
 			numberOfWords: +this.settings.gameMode === Mode.ModeNumberOfWords ?
-													+this.settings.modeNumberOfWords.numberOfWords :
-													+this.settings.modeTimeByWord.numberOfWords,
+				+this.settings.modeNumberOfWords.numberOfWords :
+				+this.settings.modeTimeByWord.numberOfWords,
 			timePerWord: +this.settings.modeTimeByWord.time,
 			playingTime: +this.settings.modeByTime.time
 		});
@@ -78,18 +80,26 @@ export class SettingsComponent implements OnInit {
 		});
 	}
 
-	public update(): void {
+	private checkUpdates(): void {
 		if (this.swUpdate.isEnabled) {
-			this.swUpdate.available.subscribe(() => {
-				UIkit.modal.confirm('Nova versão disponível. Atualizar?').then(() => {
-					window.location.reload();
-					this.notificate('Seu app foi atualizado!');
-				}, () => {
-					this.notificate('Atualização cancelada!');
-				});
+			this.swUpdate.available.subscribe((response) => {
+				console.log(response);
+				this.vertionAvailable = true;
 			});
-		} else {
-			this.notificate('Você está atualizado!');
+		}
+	}
+
+	public update(): void {
+		if (this.swUpdate.isEnabled && this.vertionAvailable) {
+			UIkit.modal.confirm('Nova versão disponível. Atualizar?').then(() => {
+				setTimeout(() => {
+					this.notificate('Seu app foi atualizado!');
+				}, 3000);
+
+				window.location.reload();
+			}, () => {
+				this.notificate('Atualização cancelada!');
+			});
 		}
 	}
 }
