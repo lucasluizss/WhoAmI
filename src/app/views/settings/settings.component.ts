@@ -83,7 +83,6 @@ export class SettingsComponent implements OnInit {
 	private checkUpdates(): void {
 		if (this.swUpdate.isEnabled) {
 			this.swUpdate.available.subscribe((response) => {
-				console.log('ATUALIZAÇÃO: ', response);
 				this.vertionAvailable = true;
 			});
 		}
