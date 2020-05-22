@@ -100,6 +100,8 @@ export class SettingsComponent implements OnInit {
 			}, () => {
 				this.notificate('Atualização cancelada!');
 			});
+		} else {
+			this.notificate('Você está atualizado!');
 		}
 	}
 }
