@@ -1,0 +1,100 @@
+<div class="uk-container uk-padding">
+	<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
+
+		<h3 class="uk-card-title">Settings <span class="icon" uk-icon="icon: settings"></span></h3>
+
+		<form *ngIf="settingsForm" [formGroup]="settingsForm" (change)="onChangeForm()">
+			<fieldset class="uk-fieldset">
+
+				<div class="uk-margin">
+					<div class="uk-form-label">
+						<label for="soundEnabled">
+							<input formControlName="soundEnabled" class="uk-checkbox" type="checkbox" id="music-cb" checked>
+							Som {{ settings.soundEnabled ? 'Ativado' : 'Desativado' }}
+						</label>
+					</div>
+				</div>
+
+				<div class="uk-margin">
+					<div class="uk-form-label">Modo do jogo:</div>
+					<select formControlName="gameMode" class="uk-select" id="game-mode-sel">
+						<option [value]="0">Partida por tempo</option>
+						<option [value]="1">Partida palavras por tempo</option>
+						<option [value]="2">Partida por quantidade de palavras</option>
+					</select>
+				</div>
+
+				<div class="uk-margin">
+					<div class="uk-form-label">Perder pontos por erros?</div>
+					<div class="uk-form-controls uk-margin uk-grid-small uk-child-width-auto uk-grid">
+						<label for="losePointsWhenWrong">
+							<input formControlName="losePointsWhenWrong" class="uk-radio" id="lose-true-rd" type="radio"
+								[value]="true"> Sim
+						</label>
+						<label for="losePointsWhenWrong">
+							<input formControlName="losePointsWhenWrong" class="uk-radio" id="lose-false-rd" type="radio"
+								[value]="false"> Nao
+						</label>
+					</div>
+				</div>
+
+				<div *ngIf="settings.IsModeNumberOfWords || settings.IsModeTimeByWord" class="uk-margin">
+					<div class="uk-form-label">Quantidade de palavras:</div>
+					<div uk-form-custom="target: > * > span:last-child">
+						<select formControlName="numberOfWords" id="number-of-words-sel">
+							<option value="10">10 Palavras</option>
+							<option value="15">15 Palavras</option>
+							<option value="20">20 Palavras</option>
+							<option value="25">25 Palavras</option>
+							<option value="30">30 Palavras</option>
+						</select>
+						<span class="uk-link">
+							<span uk-icon="icon: file-text"></span>
+							<span></span>
+						</span>
+					</div>
+				</div>
+
+				<div *ngIf="settings.IsModeTimeByWord">
+					<div class="uk-margin">
+						<div class="uk-form-label">Tempo por palavra: <span class="uk-badge">{{ settings.SecoundsPerWord }}
+								segundo(s)</span>
+						</div>
+						<input formControlName="timePerWord" class="uk-range" type="range" id="time-per-word-rg"
+							value="{{ settingsForm.value.timePerWord }}" min="1000" max="10000" step="0.1">
+					</div>
+				</div>
+
+				<div *ngIf="settings.IsModeByTime">
+					<div class="uk-margin">
+						<div class="uk-form-label">Tempo por partida: <span class="uk-badge">{{ settings.SecoundsOfGame }}
+								segundo(s)</span>
+						</div>
+						<input formControlName="playingTime" class="uk-range" type="range" id="playing-time-rg"
+							value="{{ settingsForm.value.playingTime }}" min="30000" max="90000" step="0.1">
+					</div>
+				</div>
+
+				<div class="uk-margin">
+					<button class="uk-button uk-button-default uk-margin-right" id="reset-ranking-btn" (click)="resetRanking()">
+						<span uk-icon="trash"></span>
+						Reset Ranking
+					</button>
+
+					<button class="uk-button uk-button-default uk-margin-small uk-margin-right" id="reset-settings-btn"
+						(click)="resetSettings()">
+						<span uk-icon="trash"></span>
+						Reset Settings
+					</button>
+
+					<button *ngIf="serviceWorkerAvailable" class="uk-button uk-button-default" id="reset-settings-btn"
+						(click)="update()">
+						<span uk-icon="refresh"></span>
+						ATUALIZAR
+					</button>
+				</div>
+
+			</fieldset>
+		</form>
+	</div>
+</div>

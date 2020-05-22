@@ -1,0 +1,121 @@
+{
+  "name": "WhoAmI",
+  "short_name": "WhoAmI",
+  "theme_color": "#1976d2",
+  "background_color": "#fafafa",
+  "display": "standalone",
+  "orientation": "landscape",
+  "scope": "./",
+  "start_url": "./",
+  "icons": [
+    {
+      "src": "assets/icons/apple-touch-icon-57x57.png",
+      "sizes": "57x57",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "assets/icons/apple-touch-icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "assets/icons/apple-touch-icon-76x76.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "assets/icons/apple-touch-icon-114x114.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "assets/icons/apple-touch-icon-120x120.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "assets/icons/apple-touch-icon-144x144.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "assets/icons/apple-touch-icon-152x152.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "assets/icons/apple-touch-icon-180x180.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "assets/images/others/cover.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "cover"
+    },
+    {
+      "src": "assets/images/categories/1.jpg",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/images/categories/2.jpg",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/images/categories/3.jpg",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/images/categories/4.jpg",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/images/categories/5.jpg",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/images/categories/6.jpg",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/images/categories/7.jpg",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/images/categories/8.jpg",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/audios/final_game_result.mp3",
+      "sizes": "512x512",
+      "type": "audio/mp3"
+    },
+    {
+      "src": "assets/audios/success_answer.mp3",
+      "sizes": "512x512",
+      "type": "audio/mp3"
+    },
+    {
+      "src": "assets/audios/wrong_answer.mp3",
+      "sizes": "512x512",
+      "type": "audio/mp3"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+<div uk-slideshow="autoplay: true">
+	<div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
+
+		<ul class="uk-slideshow-items">
+			<li *ngFor="let item of categories">
+				<img src="assets/images/categories/{{ item.id }}.jpg" alt="" uk-cover>
+				<div class="uk-position-bottom-right uk-overlay uk-overlay-secoundary">{{ item.authorImage }}</div>
+				<a (click)="goUrl('/game/play', item.id)" class="uk-position-center uk-position-large uk-text-center">
+					<div uk-slideshow-parallax="x: 200,-200">
+						<div class="uk-tile uk-tile-secondary">
+							<p class="uk-h4" style="color:white; font-size:60px;">{{ item.title }}</p>
+						</div>
+					</div>
+				</a>
+			</li>
+		</ul>
+
+		<a class="uk-position-center-left uk-position-large uk-overlay-primary" href="#" uk-slidenav-previous
+			uk-slideshow-item="previous"></a>
+
+		<a class="uk-position-center-right uk-position-large uk-overlay-primary" href="#" uk-slidenav-next
+			uk-slideshow-item="next"></a>
+
+	</div>
+</div>

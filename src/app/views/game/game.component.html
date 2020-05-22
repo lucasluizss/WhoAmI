@@ -1,0 +1,59 @@
+<div (click)="onClick($event)"
+	class="uk-height-viewport uk-flex uk-flex-center uk-flex-middle uk-background-cover uk-ligth"
+	data-src="assets/images/others/cover.jpg" uk-img>
+
+	<div class="uk-overlay uk-ligth uk-position-top-right">
+		<a [routerLink]="['/home']"><span uk-icon="sign-out"></span> SAIR</a>
+	</div>
+
+	<div class="uk-margin">
+		<div>
+			<p class="uk-text-white-80"> {{ vm.word }} </p>
+			<progress *ngIf="!vm.again" class="uk-progress" value="{{ vm.currentProgress }}" max="{{ vm.maxProgress }}"></progress>
+		</div>
+		<div *ngIf="vm.again && game.score !== 0">
+			<h4 class="uk-text-white-30">
+				<span uk-icon="star"></span>
+				{{ game.player }} fez {{ game.score }} ponto(s)
+				<span uk-icon="star"></span>
+			</h4>
+
+			<div *ngIf="vm.isPlayerAddict" class="uk-alert-danger" uk-alert>
+				<a class="uk-alert-close" uk-close></a>
+				<p>Parabéns você é um viciado!</p>
+			</div>
+
+			<hr />
+
+			<div class="uk-panel uk-panel-scrollable">
+				<ul class="uk-list">
+					<li class="uk-margin-left" *ngFor="let item of game.historic">
+						<p *ngIf="!item.status" class="uk-text-white-30">
+							<del>{{ item.word }}</del>
+						</p>
+						<p *ngIf="item.status" class="uk-text-white-30">
+							{{ item.word }}
+						</p>
+					</li>
+				</ul>
+			</div>
+
+			<hr />
+
+			<button class="uk-button uk-button-primary uk-width-1-1" (click)="play()">
+				JOGAR NOVAMENTE
+			</button>
+		</div>
+	</div>
+</div>
+<div>
+	<audio #audioSuccess>
+		<source src='assets/audios/success_answer.mp3' type="audio/mp3">
+	</audio>
+	<audio #audioError>
+		<source src='assets/audios/wrong_answer.mp3' type="audio/mp3">
+	</audio>
+	<audio loop #audioFinalGame>
+		<source src='assets/audios/final_game_result.mp3' type="audio/mp3">
+	</audio>
+</div>
