@@ -5,6 +5,8 @@ export class Ranking {
 		const ranking = this.Get();
 		const index = ranking.findIndex(r => r.player === result.player);
 
+		result.score = result.scoreTotal;
+
 		if (index > -1) {
 			ranking[index] = result;
 		} else {
