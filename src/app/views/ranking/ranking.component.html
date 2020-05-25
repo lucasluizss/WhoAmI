@@ -1,8 +1,14 @@
 <div class="uk-container uk-padding">
 	<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
-		<h3 class="uk-card-title">Ranking <span class="icon" uk-icon="icon: star"></span></h3>
-		<ul class="uk-list uk-list-large uk-list-divider">
-			<li *ngFor="let item of rankingList">{{ item.player }} <span class="uk-badge">{{ item.score }}</span></li>
-		</ul>
+		<h3 class="uk-card-title">
+			Ranking
+			<span class="icon" uk-icon="icon: star"></span>
+		</h3>
+		<div uk-scrollspy="target: > div; cls: uk-animation-slide-bottom; delay: 500">
+			<div *ngFor="let item of rankingList" class="uk-grid-small" uk-grid>
+				<div class="uk-width-expand" uk-leader>{{ item.player }}</div>
+				<div><span class="uk-badge">{{ item.score }}</span></div>
+			</div>
+		</div>
 	</div>
 </div>

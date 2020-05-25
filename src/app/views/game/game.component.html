@@ -3,14 +3,16 @@
 	data-src="assets/images/others/cover.jpg" uk-img>
 
 	<div class="uk-overlay uk-ligth uk-position-top-right">
-		<a [routerLink]="['/home']"><span uk-icon="sign-out"></span> SAIR</a>
+		<a (click)="stop()" [routerLink]="['/home']"><span uk-icon="sign-out"></span> SAIR</a>
 	</div>
 
 	<div class="uk-margin">
 		<div>
 			<p class="uk-text-white-80"> {{ vm.word }} </p>
-			<progress *ngIf="!vm.again" class="uk-progress" value="{{ vm.currentProgress }}" max="{{ vm.maxProgress }}"></progress>
+			<progress *ngIf="!vm.again" class="uk-progress" value="{{ vm.currentProgress }}"
+				max="{{ vm.maxProgress }}"></progress>
 		</div>
+
 		<div *ngIf="vm.again && game.score !== 0">
 			<h4 class="uk-text-white-30">
 				<span uk-icon="star"></span>

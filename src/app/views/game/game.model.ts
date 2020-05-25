@@ -8,10 +8,15 @@ export class GameViewModel {
 	public maxProgress = 0;
 	public currentProgress = 0;
 	public words: Array<string>;
+	private interrupted: boolean;
 
 	public Finished(): void {
 		this.again = true;
 		this.word = '';
+	}
+
+	public Stop(): void {
+		this.interrupted = true;
 	}
 
 	public NextWord(): void {
@@ -59,6 +64,10 @@ export class GameViewModel {
 					clearInterval(interval);
 					subscribe.complete();
 				}
+
+				if (this.interrupted) {
+					subscribe.unsubscribe();
+				}
 			}, 1000);
 		});
 	}
@@ -71,16 +80,23 @@ export class GameViewModel {
 	public PlayTimeByWord(numberOfWords: number, timeByWord: number): Observable<Historic> {
 		this.currentProgress = this.maxProgress = numberOfWords;
 
-		return new Observable((subscriber) => {
+		return new Observable((subscribe) => {
+			this.NextWord();
+			subscribe.next(new Historic(this.word, true));
+
 			const interval = setInterval(() => {
 				if (!this.HasWords || !this.currentProgress--) {
 					clearInterval(interval);
 					this.Finished();
-					subscriber.complete();
+					subscribe.complete();
+				}
+
+				if (this.interrupted) {
+					subscribe.unsubscribe();
 				}
 
 				this.NextWord();
-				subscriber.next(new Historic(this.word, true));
+				subscribe.next(new Historic(this.word, true));
 
 			}, timeByWord);
 		});
