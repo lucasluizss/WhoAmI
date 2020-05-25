@@ -183,9 +183,4 @@ export class GameComponent implements OnInit {
 			}
 		});
 	}
-
-	public stop(): void {
-		this.game = new Game();
-		this.vm.Stop();
-	}
 }
