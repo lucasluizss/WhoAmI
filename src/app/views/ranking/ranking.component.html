@@ -7,7 +7,11 @@
 		<div uk-scrollspy="target: > div; cls: uk-animation-slide-bottom; delay: 500">
 			<div *ngFor="let item of rankingList" class="uk-grid-small" uk-grid>
 				<div class="uk-width-expand" uk-leader>{{ item.player }}</div>
-				<div><span class="uk-badge">{{ item.score }}</span></div>
+				<div>
+					<span class="uk-badge" data-uk-tooltip [title]="item.date | date:'dd/MM/yyyy HH:mm:ss'">
+						{{ item.score }}
+					</span>
+				</div>
 			</div>
 		</div>
 	</div>
