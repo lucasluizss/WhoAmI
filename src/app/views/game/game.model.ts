@@ -66,6 +66,7 @@ export class GameViewModel {
 				}
 
 				if (this.interrupted) {
+					clearInterval(interval);
 					subscribe.unsubscribe();
 				}
 			}, 1000);
@@ -92,6 +93,7 @@ export class GameViewModel {
 				}
 
 				if (this.interrupted) {
+					clearInterval(interval);
 					subscribe.unsubscribe();
 				}
 
