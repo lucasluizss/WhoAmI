@@ -14,6 +14,5 @@ export class RankingComponent implements OnInit {
 
 	ngOnInit() {
 		this.rankingList = Ranking.Get();
-		console.log(this.rankingList);
 	}
 }
