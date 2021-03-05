@@ -1,7 +1,8 @@
-import { RankingComponent } from './ranking.component';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { RouterModule, Routes } from '@angular/router';
+
+import { RankingComponent } from './ranking.component';
 
 const routes: Routes = [
 		{ path: '', component: RankingComponent, data: {animation: ''} }

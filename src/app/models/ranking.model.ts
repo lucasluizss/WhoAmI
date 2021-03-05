@@ -1,8 +1,8 @@
 import { Result } from './result.model';
 
 export class Ranking {
-	public static AddResult(result: Result): void {
-		const ranking = this.Get();
+	public static addResult(result: Result): void {
+		const ranking = this.value();
 		const index = ranking.findIndex(r => r.player === result.player);
 
 		result.score = result.scoreTotal;
@@ -18,11 +18,11 @@ export class Ranking {
 		localStorage.setItem('ranking', JSON.stringify(ranking));
 	}
 
-	public static Reset(): void {
+	public static reset(): void {
 		localStorage.removeItem('ranking');
 	}
 
-	public static Get(): Array<Result> {
+	public static value(): Array<Result> {
 		return JSON.parse(localStorage.getItem('ranking')) || [] as Array<Result>;
 	}
 }

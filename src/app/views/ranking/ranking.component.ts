@@ -1,6 +1,7 @@
-import { Ranking } from './../../models/ranking.model';
-import { Result } from './../../models/result.model';
 import { Component, OnInit } from '@angular/core';
+
+import { Result } from '@models/result.model';
+import { Ranking } from '@models/ranking.model';
 
 @Component({
 	selector: 'app-ranking',
@@ -13,6 +14,6 @@ export class RankingComponent implements OnInit {
 	constructor() { }
 
 	ngOnInit() {
-		this.rankingList = Ranking.Get();
+		this.rankingList = Ranking.value();
 	}
 }

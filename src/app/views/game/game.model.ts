@@ -1,5 +1,6 @@
-import { Historic } from './../../models/historic.model';
 import { Observable } from 'rxjs';
+
+import { Historic } from '@models/historic.model';
 
 export class GameViewModel {
 	public isPlayerAddict: boolean;
@@ -10,21 +11,21 @@ export class GameViewModel {
 	public words: Array<string>;
 	private interrupted: boolean;
 
-	public Finished(): void {
+	public finished(): void {
 		this.again = true;
 		this.word = '';
 	}
 
-	public Stop(): void {
+	public stop(): void {
 		this.interrupted = true;
 	}
 
-	public NextWord(): void {
+	public nextWord(): void {
 		this.word = this.words[Math.floor(Math.random() * this.words.length)];
 		this.words = this.words.filter(w => w !== this.word);
 	}
 
-	public LoadWords(words: string[]): void {
+	public loadWords(words: string[]): void {
 		this.words = words || [];
 	}
 
@@ -36,7 +37,7 @@ export class GameViewModel {
 		return this.words && this.words.length > 0 || this.words.length === 0 && !!this.word;
 	}
 
-	public Start(): Observable<void> {
+	public start(): Observable<void> {
 		return new Observable(subscriber => {
 			const arr = ['Prepare-se!', '3', '2', '1'];
 			let startCounter = arr.length;
@@ -53,11 +54,11 @@ export class GameViewModel {
 		});
 	}
 
-	public PlayByTime(secoundsOfGame: number): Observable<void> {
+	public playByTime(secoundsOfGame: number): Observable<void> {
 		this.currentProgress = this.maxProgress = secoundsOfGame;
 
 		return new Observable((subscribe) => {
-			this.NextWord();
+			this.nextWord();
 
 			const interval = setInterval(() => {
 				if (--this.currentProgress <= 0) {
@@ -73,22 +74,22 @@ export class GameViewModel {
 		});
 	}
 
-	public PlayByNumberOfWords(numberOfWords: number): void {
+	public playByNumberOfWords(numberOfWords: number): void {
 		this.currentProgress = this.maxProgress = numberOfWords;
-		this.NextWord();
+		this.nextWord();
 	}
 
-	public PlayTimeByWord(numberOfWords: number, timeByWord: number): Observable<Historic> {
+	public playTimeByWord(numberOfWords: number, timeByWord: number): Observable<Historic> {
 		this.currentProgress = this.maxProgress = numberOfWords;
 
 		return new Observable((subscribe) => {
-			this.NextWord();
+			this.nextWord();
 			subscribe.next(new Historic(this.word, true));
 
 			const interval = setInterval(() => {
 				if (!this.HasWords || !this.currentProgress--) {
 					clearInterval(interval);
-					this.Finished();
+					this.finished();
 					subscribe.complete();
 				}
 
@@ -97,7 +98,7 @@ export class GameViewModel {
 					subscribe.unsubscribe();
 				}
 
-				this.NextWord();
+				this.nextWord();
 				subscribe.next(new Historic(this.word, true));
 
 			}, timeByWord);

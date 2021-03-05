@@ -1,11 +1,10 @@
-import { SwUpdate } from '@angular/service-worker';
 import { ModeByTime, ModeTimeByWord, ModeNumberOfWords, Mode } from './mode.model';
 import database from '../../data/database.json';
 declare var UIkit: any;
 export class Configuration {
 
 	constructor() {
-		this.Load();
+		this.load();
 	}
 
 	public soundEnabled: boolean;
@@ -15,27 +14,27 @@ export class Configuration {
 	public modeTimeByWord: ModeTimeByWord;
 	public modeNumberOfWords: ModeNumberOfWords;
 
-	public get IsModeByTime(): boolean {
+	public get isModeByTime(): boolean {
 		return +this.gameMode === Mode.ModeByTime;
 	}
 
-	public get IsModeNumberOfWords(): boolean {
+	public get isModeNumberOfWords(): boolean {
 		return +this.gameMode === Mode.ModeNumberOfWords;
 	}
 
-	public get IsModeTimeByWord(): boolean {
+	public get isModeTimeByWord(): boolean {
 		return +this.gameMode === Mode.ModeTimeByWord;
 	}
 
-	public get SecoundsPerWord(): number {
+	public get secoundsPerWord(): number {
 		return Math.round((this.modeTimeByWord.time / 1000) * 100) / 100;
 	}
 
-	public get SecoundsOfGame(): number {
+	public get secoundsOfGame(): number {
 		return Math.round((this.modeByTime.time / 1000) * 100) / 100;
 	}
 
-	private Load(): void {
+	private load(): void {
 		const configuration = JSON.parse(localStorage.getItem('settings')) as Configuration;
 
 		this.soundEnabled = configuration.soundEnabled;
@@ -46,7 +45,7 @@ export class Configuration {
 		this.modeNumberOfWords = configuration.modeNumberOfWords;
 	}
 
-	public Set(
+	public set(
 		soundEnabled: boolean,
 		gameMode: Mode,
 		losePointsWhenWrong: boolean,
@@ -69,6 +68,6 @@ export class Configuration {
 	public Reset(): void {
 		const defaultConfig = database.configuration as Configuration;
 		localStorage.setItem('settings', JSON.stringify(defaultConfig));
-		this.Load();
+		this.load();
 	}
 }

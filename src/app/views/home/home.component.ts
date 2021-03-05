@@ -1,7 +1,8 @@
-import { Category } from 'src/app/models/category.model';
-import { Component, OnInit } from '@angular/core';
-import database from '../../../data/database.json';
 import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+
+import database from '@data/database.json';
+import { Category } from '@models/category.model';
 
 @Component({
 	selector: 'app-home',

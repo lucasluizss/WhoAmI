@@ -38,7 +38,7 @@
 					</div>
 				</div>
 
-				<div *ngIf="settings.IsModeNumberOfWords || settings.IsModeTimeByWord" class="uk-margin">
+				<div *ngIf="settings.isModeNumberOfWords || settings.isModeTimeByWord" class="uk-margin">
 					<div class="uk-form-label">Quantidade de palavras:</div>
 					<div uk-form-custom="target: > * > span:last-child">
 						<select formControlName="numberOfWords" id="number-of-words-sel">
@@ -55,9 +55,9 @@
 					</div>
 				</div>
 
-				<div *ngIf="settings.IsModeTimeByWord">
+				<div *ngIf="settings.isModeTimeByWord">
 					<div class="uk-margin">
-						<div class="uk-form-label">Tempo por palavra: <span class="uk-badge">{{ settings.SecoundsPerWord }}
+						<div class="uk-form-label">Tempo por palavra: <span class="uk-badge">{{ settings.secoundsPerWord }}
 								segundo(s)</span>
 						</div>
 						<input formControlName="timePerWord" class="uk-range" type="range" id="time-per-word-rg"
@@ -65,9 +65,9 @@
 					</div>
 				</div>
 
-				<div *ngIf="settings.IsModeByTime">
+				<div *ngIf="settings.isModeByTime">
 					<div class="uk-margin">
-						<div class="uk-form-label">Tempo por partida: <span class="uk-badge">{{ settings.SecoundsOfGame }}
+						<div class="uk-form-label">Tempo por partida: <span class="uk-badge">{{ settings.secoundsOfGame }}
 								segundo(s)</span>
 						</div>
 						<input formControlName="playingTime" class="uk-range" type="range" id="playing-time-rg"

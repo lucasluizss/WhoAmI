@@ -1,12 +1,13 @@
-import { Ranking } from './../../models/ranking.model';
-import { GameViewModel } from './game.model';
-import { Game } from './../../models/game.model';
-import { Historic } from './../../models/historic.model';
-import { Result } from './../../models/result.model';
-import { Configuration } from './../../models/configuration.model';
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Mode } from 'src/app/models/mode.model';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+
+import { GameViewModel } from './game.model';
+import { Mode } from '@models/mode.model';
+import { Game } from '@models/game.model';
+import { Result } from '@models/result.model';
+import { Ranking } from '@models/ranking.model';
+import { Historic } from '@models/historic.model';
+import { Configuration } from '@models/configuration.model';
 declare var UIkit: any;
 
 @Component({
@@ -31,7 +32,7 @@ export class GameComponent implements OnInit {
 
 		this.activatedRoute.queryParams.subscribe(params => {
 			const categoryId = +params.id;
-			this.game.SetCategory(categoryId);
+			this.game.setCategory(categoryId);
 		});
 
 		this.whoIsPlaying();
@@ -43,7 +44,7 @@ export class GameComponent implements OnInit {
 
 	private whoIsPlaying(): void {
 		UIkit.modal.prompt('Digite seu nome:', '').then((name: string) => {
-			this.game.SetPlayer(name);
+			this.game.setPlayer(name);
 			this.notificate(`Vamos jogar ${this.game.player}`);
 
 			this.play();
@@ -52,11 +53,11 @@ export class GameComponent implements OnInit {
 
 	public play(): void {
 		this.audioFinalGame.nativeElement.pause();
-		this.game.ClearHistoric();
-		this.vm.LoadWords(this.game.category.data);
+		this.game.clearHistoric();
+		this.vm.loadWords(this.game.category.data);
 
 		const self = this;
-		this.vm.Start().subscribe({
+		this.vm.start().subscribe({
 			complete() {
 				self.callGameByMode();
 			}
@@ -68,10 +69,10 @@ export class GameComponent implements OnInit {
 
 		switch (this.settings.gameMode) {
 			case Mode.ModeByTime:
-				this.vm.PlayByTime(this.secoundsOfGame).subscribe({ complete() { self.saveScoreResult(); } });
+				this.vm.playByTime(this.secoundsOfGame).subscribe({ complete() { self.saveScoreResult(); } });
 				break;
 			case Mode.ModeNumberOfWords:
-				this.vm.PlayByNumberOfWords(this.settings.modeNumberOfWords.numberOfWords);
+				this.vm.playByNumberOfWords(this.settings.modeNumberOfWords.numberOfWords);
 				break;
 			case Mode.ModeTimeByWord:
 				this.playTimePerWords();
@@ -85,7 +86,7 @@ export class GameComponent implements OnInit {
 	private playTimePerWords(): void {
 		const self = this;
 
-		this.vm.PlayTimeByWord(this.settings.modeTimeByWord.numberOfWords, +this.settings.modeTimeByWord.time).subscribe({
+		this.vm.playTimeByWord(this.settings.modeTimeByWord.numberOfWords, +this.settings.modeTimeByWord.time).subscribe({
 			next(historic) {
 				self.game.AddHistoric(historic as Historic);
 			},
@@ -97,12 +98,12 @@ export class GameComponent implements OnInit {
 
 	private rightAnswer(): void {
 		this.notificate('Acertou!', 'success', 0.8);
-		this.game.RightAnswer(this.vm.word);
+		this.game.rightAnswer(this.vm.word);
 	}
 
 	private incorrectAnswer(): void {
 		this.notificate('Errou!', 'danger', 0.8);
-		this.game.IncorrectAnswer(this.vm.word, this.settings.losePointsWhenWrong);
+		this.game.incorrectAnswer(this.vm.word, this.settings.losePointsWhenWrong);
 	}
 
 	private computeResult(): void {
@@ -114,11 +115,11 @@ export class GameComponent implements OnInit {
 
 	private saveScoreResult() {
 		if (this.settings.soundEnabled) { this.audioFinalGame.nativeElement.play(); }
-		this.vm.isPlayerAddict = this.game.IsPlayerAddict();
+		this.vm.isPlayerAddict = this.game.isPlayerAddict();
 
-		Ranking.AddResult(new Result(this.game.player, this.game.score));
+		Ranking.addResult(new Result(this.game.player, this.game.score));
 
-		this.vm.Finished();
+		this.vm.finished();
 	}
 
 	private notificate(message: string, status: string = 'primary', timeout = 3): void {
@@ -171,7 +172,7 @@ export class GameComponent implements OnInit {
 			this.incorrectAnswer();
 		}
 
-		this.vm.NextWord();
+		this.vm.nextWord();
 	}
 
 	public configureSound(): void {

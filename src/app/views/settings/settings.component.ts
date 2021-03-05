@@ -1,17 +1,23 @@
-import { Ranking } from './../../models/ranking.model';
-import { Mode, ModeByTime, ModeTimeByWord, ModeNumberOfWords } from '../../models/mode.model';
-import { Configuration } from './../../models/configuration.model';
-import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { SwUpdate } from '@angular/service-worker';
+import { Component, OnInit } from '@angular/core';
+
+import { Ranking } from '@models/ranking.model';
+import { Configuration } from '@models/configuration.model';
+import {
+	Mode,
+	ModeByTime,
+	ModeTimeByWord,
+	ModeNumberOfWords,
+} from '@models/mode.model';
+
 declare var UIkit: any;
 
 @Component({
 	selector: 'app-settings',
-	templateUrl: './settings.component.html'
+	templateUrl: './settings.component.html',
 })
 export class SettingsComponent implements OnInit {
-
 	public settings: Configuration;
 	public serviceWorkerAvailable: boolean;
 	private vertionAvailable: boolean;
@@ -22,10 +28,10 @@ export class SettingsComponent implements OnInit {
 		losePointsWhenWrong: [false],
 		numberOfWords: [5],
 		timePerWord: [2000],
-		playingTime: [30000]
+		playingTime: [30000],
 	});
 
-	constructor(public fb: FormBuilder, private readonly swUpdate: SwUpdate) { }
+	constructor(public fb: FormBuilder, private readonly swUpdate: SwUpdate) {}
 
 	ngOnInit() {
 		this.settings = new Configuration();
@@ -39,18 +45,19 @@ export class SettingsComponent implements OnInit {
 			soundEnabled: this.settings.soundEnabled,
 			gameMode: +this.settings.gameMode as Mode,
 			losePointsWhenWrong: this.settings.losePointsWhenWrong,
-			numberOfWords: +this.settings.gameMode === Mode.ModeNumberOfWords ?
-				+this.settings.modeNumberOfWords.numberOfWords :
-				+this.settings.modeTimeByWord.numberOfWords,
+			numberOfWords:
+				+this.settings.gameMode === Mode.ModeNumberOfWords
+					? +this.settings.modeNumberOfWords.numberOfWords
+					: +this.settings.modeTimeByWord.numberOfWords,
 			timePerWord: +this.settings.modeTimeByWord.time,
-			playingTime: +this.settings.modeByTime.time
+			playingTime: +this.settings.modeByTime.time,
 		});
 	}
 
 	public onChangeForm(): void {
 		const changes = this.settingsForm.value;
 
-		this.settings.Set(
+		this.settings.set(
 			changes.soundEnabled,
 			+changes.gameMode,
 			changes.losePointsWhenWrong,
@@ -67,7 +74,7 @@ export class SettingsComponent implements OnInit {
 	}
 
 	public resetRanking(): void {
-		Ranking.Reset();
+		Ranking.reset();
 		this.notificate('Ranking foi redefinido!');
 	}
 
@@ -76,13 +83,13 @@ export class SettingsComponent implements OnInit {
 			message: `<span uk-icon='icon: check'></span> ${message}`,
 			status: 'primary',
 			pos: 'bottom-center',
-			timeout
+			timeout,
 		});
 	}
 
 	private checkUpdates(): void {
 		if (this.swUpdate.isEnabled) {
-			this.swUpdate.available.subscribe((response) => {
+			this.swUpdate.available.subscribe(response => {
 				this.vertionAvailable = true;
 			});
 		}
@@ -90,15 +97,18 @@ export class SettingsComponent implements OnInit {
 
 	public update(): void {
 		if (this.vertionAvailable) {
-			UIkit.modal.confirm('Nova versão disponível. Atualizar?').then(() => {
-				this.notificate('Seu app está sendo atualizado!');
+			UIkit.modal.confirm('Nova versão disponível. Atualizar?').then(
+				() => {
+					this.notificate('Seu app está sendo atualizado!');
 
-				setTimeout(() => {
-					window.location.reload();
-				}, 3000);
-			}, () => {
-				this.notificate('Atualização cancelada!');
-			});
+					setTimeout(() => {
+						window.location.reload();
+					}, 3000);
+				},
+				() => {
+					this.notificate('Atualização cancelada!');
+				}
+			);
 		} else {
 			this.notificate('Você está atualizado!');
 		}

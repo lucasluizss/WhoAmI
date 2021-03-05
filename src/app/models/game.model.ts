@@ -3,7 +3,7 @@ import { Category } from './category.model';
 
 export class Game {
 	constructor() {
-		this.ClearHistoric();
+		this.clearHistoric();
 	}
 
 	public player: string;
@@ -11,20 +11,22 @@ export class Game {
 	public category: Category;
 	public historic: Array<Historic>;
 
-	public IsPlayerAddict(): boolean {
+	public isPlayerAddict(): boolean {
 		return this.score === this.category.data.length;
 	}
 
-	public SetPlayer(player: string): void {
+	public setPlayer(player: string): void {
 		this.player = player || 'Anônimo';
 	}
 
-	public SetCategory(categoryId: number): void {
-		const categories = JSON.parse(localStorage.getItem('categories')) as Array<Category>;
+	public setCategory(categoryId: number): void {
+		const categories = JSON.parse(
+			localStorage.getItem('categories')
+		) as Array<Category>;
 		this.category = categories.find(x => x.id === categoryId) as Category;
 	}
 
-	public IncorrectAnswer(answer: string, losePoints: boolean): void {
+	public incorrectAnswer(answer: string, losePoints: boolean): void {
 		this.AddHistoric(new Historic(answer, false));
 
 		if (this.score > 0 && losePoints) {
@@ -32,12 +34,12 @@ export class Game {
 		}
 	}
 
-	public RightAnswer(answer: string): void {
+	public rightAnswer(answer: string): void {
 		this.AddHistoric(new Historic(answer, true));
 		this.score++;
 	}
 
-	public ClearHistoric(): void {
+	public clearHistoric(): void {
 		this.score = 0;
 		this.historic = new Array<Historic>();
 	}
