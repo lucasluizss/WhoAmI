@@ -23,7 +23,7 @@ export class Game {
 		const categories = JSON.parse(
 			localStorage.getItem('categories')
 		) as Array<Category>;
-		this.category = categories.find(x => x.id === categoryId) as Category;
+		this.category = categories.find(x => x.id === categoryId);
 	}
 
 	public incorrectAnswer(answer: string, losePoints: boolean): void {

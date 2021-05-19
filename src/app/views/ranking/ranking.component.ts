@@ -11,8 +11,6 @@ export class RankingComponent implements OnInit {
 
 	public rankingList: Array<Result>;
 
-	constructor() { }
-
 	ngOnInit() {
 		this.rankingList = Ranking.value();
 	}

@@ -25,7 +25,7 @@ export class ModeNumberOfWords {
 }
 
 export enum Mode {
-	ModeByTime,
-	ModeTimeByWord,
-	ModeNumberOfWords
+	ByTime,
+	TimeByWord,
+	NumberOfWords
 }

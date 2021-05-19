@@ -24,7 +24,7 @@ export class SettingsComponent implements OnInit {
 
 	public settingsForm = this.fb.group({
 		soundEnabled: [true],
-		gameMode: [Mode.ModeByTime],
+		gameMode: [Mode.ByTime],
 		losePointsWhenWrong: [false],
 		numberOfWords: [5],
 		timePerWord: [2000],
@@ -46,7 +46,7 @@ export class SettingsComponent implements OnInit {
 			gameMode: +this.settings.gameMode as Mode,
 			losePointsWhenWrong: this.settings.losePointsWhenWrong,
 			numberOfWords:
-				+this.settings.gameMode === Mode.ModeNumberOfWords
+				+this.settings.gameMode === Mode.NumberOfWords
 					? +this.settings.modeNumberOfWords.numberOfWords
 					: +this.settings.modeTimeByWord.numberOfWords,
 			timePerWord: +this.settings.modeTimeByWord.time,

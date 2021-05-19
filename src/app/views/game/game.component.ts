@@ -68,13 +68,13 @@ export class GameComponent implements OnInit {
 		const self = this;
 
 		switch (this.settings.gameMode) {
-			case Mode.ModeByTime:
+			case Mode.ByTime:
 				this.vm.playByTime(this.secoundsOfGame).subscribe({ complete() { self.saveScoreResult(); } });
 				break;
-			case Mode.ModeNumberOfWords:
+			case Mode.NumberOfWords:
 				this.vm.playByNumberOfWords(this.settings.modeNumberOfWords.numberOfWords);
 				break;
-			case Mode.ModeTimeByWord:
+			case Mode.TimeByWord:
 				this.playTimePerWords();
 				break;
 			default:
@@ -150,14 +150,14 @@ export class GameComponent implements OnInit {
 		const clickTargetWidth = clickTarget.offsetWidth;
 		const xCoordInClickTarget = e.clientX - clickTarget.getBoundingClientRect().left;
 
-		if (!this.vm.CanClick || this.settings.gameMode === Mode.ModeTimeByWord) { return; }
+		if (!this.vm.CanClick || this.settings.gameMode === Mode.TimeByWord) { return; }
 
 		if (!this.vm.HasWords || this.vm.currentProgress <= 0) {
 			this.saveScoreResult();
 			return;
 		}
 
-		if (this.settings.gameMode === Mode.ModeNumberOfWords) {
+		if (this.settings.gameMode === Mode.NumberOfWords) {
 			--this.vm.currentProgress;
 		}
 

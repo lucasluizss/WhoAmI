@@ -4,7 +4,7 @@
 		<h3 class="uk-card-title">Settings <span class="icon" uk-icon="icon: settings"></span></h3>
 
 		<form *ngIf="settingsForm" [formGroup]="settingsForm" (change)="onChangeForm()">
-			<fieldset class="uk-fieldset">
+			<div class="uk-fieldset">
 
 				<div class="uk-margin">
 					<div class="uk-form-label">
@@ -94,7 +94,7 @@
 					</button>
 				</div>
 
-			</fieldset>
+			</div>
 		</form>
 	</div>
 </div>

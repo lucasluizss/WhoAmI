@@ -15,15 +15,15 @@ export class Configuration {
 	public modeNumberOfWords: ModeNumberOfWords;
 
 	public get isModeByTime(): boolean {
-		return +this.gameMode === Mode.ModeByTime;
+		return +this.gameMode === Mode.ByTime;
 	}
 
 	public get isModeNumberOfWords(): boolean {
-		return +this.gameMode === Mode.ModeNumberOfWords;
+		return +this.gameMode === Mode.NumberOfWords;
 	}
 
 	public get isModeTimeByWord(): boolean {
-		return +this.gameMode === Mode.ModeTimeByWord;
+		return +this.gameMode === Mode.TimeByWord;
 	}
 
 	public get secoundsPerWord(): number {
