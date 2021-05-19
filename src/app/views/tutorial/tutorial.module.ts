@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TutorialComponent } from './tutorial.component';
 
 const routes: Routes = [
-		{ path: '', component: TutorialComponent, data: {animation: 'TutorialPage'} }
+		{ path: '', component: TutorialComponent, data: {animation: 'SlideAnimation'} }
 ];
 
 @NgModule({

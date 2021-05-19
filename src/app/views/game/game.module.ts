@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 const routes: Routes = [
-		{ path: '', component: GameComponent, data: {animation: 'GamePage'} }
+		{ path: '', component: GameComponent, data: {animation: 'SlideAnimation'} }
 ];
 
 @NgModule({
